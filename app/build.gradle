@@ -1,0 +1,134 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'com.google.gms.google-services'
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.example.mandamax"
+        minSdkVersion 24
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+                beta {
+                    initWith debug
+                    debuggable true
+                    applicationIdSuffix ".beta"
+                    versionNameSuffix "-beta"
+                }
+        debug{
+            applicationIdSuffix ".debug"
+            debuggable true
+            versionNameSuffix "-alpha"
+            //Change for dev in local with:
+            buildConfigField "String", "WS_SERVICE", "\"\""
+            //buildConfigField "boolean", "IS_ser", "true"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding.enabled = true
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.google.firebase:firebase-messaging-ktx:22.0.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:23.0.3'
+    def glide ="4.10.0"
+    def lifeCycle = '2.2.0'
+    def coroutines = '1.3.1'
+    def daggerVersion = '2.17'
+    def roomVersion = '2.2.5'
+    def supportVersion = '28.0.0'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    implementation "commons-io:commons-io:1.3"
+    implementation 'androidx.fragment:fragment-ktx:1.3.0'
+    implementation 'commons-codec:commons-codec:1.15'
+
+
+    //Design
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.3.0-alpha02'
+    implementation "com.android.support:palette-v7:$supportVersion" //Palette
+    implementation "com.github.bumptech.glide:glide:$glide"//ImageSupport
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'//ShimmerEfect
+    implementation 'de.hdodenhof:circleimageview:2.2.0'//ImageCircular
+    implementation 'com.synnapps:carouselview:0.1.5' //Crouselview
+    implementation 'com.github.chrisbanes:PhotoView:2.1.4' // PhotoView
+    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'//ExpandableLayout
+    implementation 'com.yarolegovich:discrete-scrollview:1.4.9'//DiscreteScrollView
+    implementation "androidx.paging:paging-runtime:2.1.2" //Paging
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:converter-scalars:2.9.0"
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    //LifeCycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycle"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+    implementation "androidx.activity:activity-ktx:1.1.0"
+
+    //Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    //dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+
+    // GSM
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    //Support
+    implementation 'org.apache.commons:commons-io:1.3.2'
+
+    //Unit Testing
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
