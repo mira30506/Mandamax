@@ -16,5 +16,5 @@ interface MandadoDao {
     @Query("select * from Mandado")
     fun getMandados():List<Mandado>
 
-
+//ffdgdfgfdgfdg
 }
